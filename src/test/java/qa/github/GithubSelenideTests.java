@@ -38,4 +38,22 @@ class GithubSelenideTests {
         $("#wiki-pages-box").$(byText("SoftAssertions")).click();
         $(".repository-content").shouldHave(text("Using JUnit5 extend test class"));
     }
+
+    @Test
+    @DisplayName("Checking Enterprise in Solution menu")
+    void checkEnterpriseInSolutionTest() {
+        open("https://github.com");
+        $$("button").findBy(text("Solutions")).hover();
+        $("[aria-labelledby=solutions-by-company-size-heading]")
+                .$(byText("Enterprises")).click();
+        $(".enterprise-hero-background").shouldHave(text("The AI-powered developer platform"));
+    }
+
+/*
+2. (опциональное) Запрограммируйте Drag&Drop с помощью Selenide.actions()
+- Откройте https://the-internet.herokuapp.com/drag_and_drop
+- Перенесите прямоугольник А на место В
+- Проверьте, что прямоугольники действительно поменялись
+- В Selenide есть команда $(element).dragAndDrop($(to-element)),
+проверьте работает ли тест, если использовать её вместо actions()*/
 }
