@@ -1,4 +1,4 @@
-package github;
+package qa.github;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
