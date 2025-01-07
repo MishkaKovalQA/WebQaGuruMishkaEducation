@@ -12,6 +12,8 @@ class AutomationPracticeFormTests extends BaseTest {
     @Test
     void testAutomationPracticeFormTest() {
         open("https://demoqa.com/automation-practice-form");
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
 
         $("#firstName").setValue("Mishka");
         $("#lastName").setValue("Koval");
