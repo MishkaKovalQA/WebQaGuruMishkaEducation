@@ -13,7 +13,7 @@ repositories {
 dependencies {
     testImplementation("com.codeborne:selenide:7.6.1")
     testImplementation("org.junit.jupiter:junit-jupiter:5.11.4")
-    testImplementation("ch.qos.logback:logback-classic:1.5.15")
+    testImplementation("ch.qos.logback:logback-classic:1.5.16")
 }
 
 tasks.test {
