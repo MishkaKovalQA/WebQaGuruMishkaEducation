@@ -1,4 +1,4 @@
-package qa.qa_guru;
+package qa.qaguru;
 
 import com.codeborne.selenide.Configuration;
 import domain.Browser;
