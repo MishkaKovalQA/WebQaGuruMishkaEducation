@@ -25,7 +25,8 @@ class AutomationPracticeFormTests extends BaseTest {
         var city = "Jaipur";
 
         open("https://demoqa.com/automation-practice-form");
-        removeAds();
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
         $(".practice-form-wrapper").shouldHave(text("Practice Form"));
 
         $("#firstName").setValue(firstName);
@@ -63,10 +64,5 @@ class AutomationPracticeFormTests extends BaseTest {
         rows.findBy(text("Picture")).shouldHave(text(fileName));
         rows.findBy(text("Address")).shouldHave(text(address));
         rows.findBy(text("State and City")).shouldHave(text(state + " " + city));
-    }
-
-    private static void removeAds() {
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
     }
 }

@@ -1,0 +1,151 @@
+package qa.demoqa.page;
+
+import com.codeborne.selenide.SelenideElement;
+import qa.demoqa.component.CalendarComponent;
+import qa.demoqa.component.ModalResultsComponent;
+import qa.demoqa.dto.RegistrationFormDataModel;
+
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.value;
+import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selenide.*;
+
+public class RegistrationPage {
+
+    private CalendarComponent calendarComponent = new CalendarComponent();
+    private ModalResultsComponent modalResultsComponent = new ModalResultsComponent();
+    private SelenideElement
+            firstNameInput = $("#firstName"),
+            lastNameInput = $("#lastName"),
+            emailInput = $("#userEmail"),
+            genderInput = $("#genterWrapper"),
+            phoneInput = $("#userNumber"),
+            dateOfBirthInput = $("#dateOfBirthInput"),
+            subjectInput = $("#subjectsInput"),
+            hobbyInput = $("#hobbiesWrapper"),
+            fileInput = $("#uploadPicture"),
+            addressInput = $("#currentAddress"),
+            stateCityInput = $("#stateCity-wrapper"),
+            stateInput = $("#state"),
+            cityInput = $("#city"),
+            submitButton = $("#submit");
+
+    public RegistrationPage openPage() {
+        open("https://demoqa.com/automation-practice-form");
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
+        $(".practice-form-wrapper").shouldHave(text("Practice Form"));
+
+        return this;
+    }
+
+    public RegistrationPage setFirstName(String firstName) {
+        firstNameInput.setValue(firstName);
+
+        return this;
+    }
+
+    public RegistrationPage setLastName(String lastName) {
+        lastNameInput.setValue(lastName);
+
+        return this;
+    }
+
+    public RegistrationPage setEmail(String email) {
+        emailInput.setValue(email);
+
+        return this;
+    }
+
+    public RegistrationPage setGender(String gender) {
+        genderInput.$(byText(gender)).click();
+
+        return this;
+    }
+
+    public RegistrationPage setPhone(String phone) {
+        phoneInput.setValue(phone);
+
+        return this;
+    }
+
+    public RegistrationPage setDate(String day, String month, String year) {
+        dateOfBirthInput.click();
+        calendarComponent.setDate(day, month, year);
+
+        return this;
+    }
+
+    public RegistrationPage setSubject(String subject) {
+        subjectInput.setValue(subject).pressEnter();
+
+        return this;
+    }
+
+    public RegistrationPage setHobby(String hobby) {
+        hobbyInput.$(byText(hobby)).click();
+
+        return this;
+    }
+
+    public RegistrationPage uploadPicture(String fileName) {
+        fileInput.uploadFromClasspath(fileName);
+        fileInput.shouldHave(value(fileName));
+
+        return this;
+    }
+
+    public RegistrationPage setAddress(String address) {
+        addressInput.setValue(address);
+
+        return this;
+    }
+
+    public RegistrationPage setStateAndCity(String state, String city) {
+        stateInput.click();
+        stateCityInput.$(byText(state)).click();
+        cityInput.click();
+        stateCityInput.$(byText(city)).click();
+
+        return this;
+    }
+
+    public RegistrationPage clickSubmitButton() {
+        submitButton.click();
+        modalResultsComponent.checkAppeared();
+
+        return this;
+    }
+
+    public RegistrationPage checkFormResults(RegistrationFormDataModel data) {
+        var rows = $$(".table tbody tr");
+        rows.findBy(text("Student Name")).shouldHave(text(data.getFirstName() + " " + data.getLastName()));
+        rows.findBy(text("Student Email")).shouldHave(text(data.getEmail()));
+        rows.findBy(text("Gender")).shouldHave(text(data.getGender()));
+        rows.findBy(text("Mobile")).shouldHave(text(data.getPhone()));
+        rows.findBy(text("Date of Birth")).shouldHave(text(data.getDay() + " " + data.getMonth() + "," + data.getYear()));
+        rows.findBy(text("Subjects")).shouldHave(text(data.getSubject()));
+        rows.findBy(text("Hobbies")).shouldHave(text(data.getHobby()));
+        rows.findBy(text("Picture")).shouldHave(text(data.getFileName()));
+        rows.findBy(text("Address")).shouldHave(text(data.getAddress()));
+        rows.findBy(text("State and City")).shouldHave(text(data.getState() + " " + data.getCity()));
+
+        return this;
+    }
+
+    public RegistrationPage fillRegistrationForm(RegistrationFormDataModel data) {
+        setFirstName(data.getFirstName());
+        setLastName(data.getLastName());
+        setEmail(data.getEmail());
+        setGender(data.getGender());
+        setPhone(data.getPhone());
+        setDate(data.getDay(), data.getMonth(), data.getYear());
+        setSubject(data.getSubject());
+        setHobby(data.getHobby());
+        uploadPicture(data.getFileName());
+        setAddress(data.getAddress());
+        setStateAndCity(data.getState(), data.getCity());
+
+        return this;
+    }
+}
