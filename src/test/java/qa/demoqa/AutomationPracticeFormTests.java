@@ -3,7 +3,7 @@ package qa.demoqa;
 import org.junit.jupiter.api.Test;
 import qa.BaseTest;
 
-import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -11,42 +11,62 @@ class AutomationPracticeFormTests extends BaseTest {
 
     @Test
     void testAutomationPracticeFormTest() {
-        open("https://demoqa.com/automation-practice-form");
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
+        var firstName = "Mishka";
+        var lastName = "Koval";
+        var email = "mishka@gmail.com";
+        var gender = "Male";
+        var phone = "1234567890";
+        var month = "May";
+        var year = "1990";
+        var hobby = "Sports";
+        var fileName = "kitten.jpg";
+        var address = "montenegro";
+        var state = "Rajasthan";
+        var city = "Jaipur";
 
-        $("#firstName").setValue("Mishka");
-        $("#lastName").setValue("Koval");
-        $("#userEmail").setValue("mishka@gmail.com");
-        $("#gender-radio-1").parent().click();
-        $("#userNumber").setValue("1234567890");
+        open("https://demoqa.com/automation-practice-form");
+        removeAds();
+        $(".practice-form-wrapper").shouldHave(text("Practice Form"));
+
+        $("#firstName").setValue(firstName);
+        $("#lastName").setValue(lastName);
+        $("#userEmail").setValue(email);
+        $("#genterWrapper").$(byText(gender)).click();
+        $("#userNumber").setValue(phone);
         $("#dateOfBirthInput").click();
-        $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").selectOption("May");
-        $(".react-datepicker__year-select").selectOption("1990");
-        $(".react-datepicker__day--028").click();
+        $(".react-datepicker__month-select").selectOption(month);
+        $(".react-datepicker__year-select").selectOption(year);
+        $(".react-datepicker__day--028:not(.react-datepicker__day--outside-month)").click();
         $(".subjects-auto-complete__value-container input").setValue("b");
         $(".subjects-auto-complete__option").click();
-        $("label[for='hobbies-checkbox-1']").click();
-        $("#uploadPicture").uploadFromClasspath("kitten.jpg");
-        $("#currentAddress").setValue("montenegro");
-        $(byText("Select State")).click();
-        $(byText("Rajasthan")).click();
-        $(byText("Select City")).click();
-        $(byText("Jaipur")).click();
+        $("#hobbiesWrapper").$(byText(hobby)).click();
+        $("#uploadPicture").uploadFromClasspath(fileName);
+        $("#uploadPicture").shouldHave(value(fileName));
+        $("#currentAddress").setValue(address);
+        $("#state").click();
+        $("#stateCity-wrapper").$(byText(state)).click();
+        $("#city").click();
+        $("#stateCity-wrapper").$(byText(city)).click();
 
         $("#submit").click();
+        $(".modal-dialog").should(appear);
+        $(".modal-dialog").shouldHave(text("Thanks for submitting the form"));
 
-        var rows = $$(".table.table-dark tbody tr");
-        rows.findBy(text("Student Name")).shouldHave(text("Mishka Koval"));
-        rows.findBy(text("Student Email")).shouldHave(text("mishka@gmail.com"));
-        rows.findBy(text("Gender")).shouldHave(text("Male"));
-        rows.findBy(text("Mobile")).shouldHave(text("1234567890"));
-        rows.findBy(text("Date of Birth")).shouldHave(text("28 May,1990"));
+        var rows = $$(".table tbody tr");
+        rows.findBy(text("Student Name")).shouldHave(text(firstName + " " + lastName));
+        rows.findBy(text("Student Email")).shouldHave(text(email));
+        rows.findBy(text("Gender")).shouldHave(text(gender));
+        rows.findBy(text("Mobile")).shouldHave(text(phone));
+        rows.findBy(text("Date of Birth")).shouldHave(text("28" + " " + month + "," + year));
         rows.findBy(text("Subjects")).shouldHave(text("Biology"));
-        rows.findBy(text("Hobbies")).shouldHave(text("Sports"));
-        rows.findBy(text("Picture")).shouldHave(text("kitten.jpg"));
-        rows.findBy(text("Address")).shouldHave(text("montenegro"));
-        rows.findBy(text("State and City")).shouldHave(text("Rajasthan Jaipur"));
+        rows.findBy(text("Hobbies")).shouldHave(text(hobby));
+        rows.findBy(text("Picture")).shouldHave(text(fileName));
+        rows.findBy(text("Address")).shouldHave(text(address));
+        rows.findBy(text("State and City")).shouldHave(text(state + " " + city));
+    }
+
+    private static void removeAds() {
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
     }
 }
