@@ -12,8 +12,18 @@ repositories {
 
 dependencies {
     testImplementation("com.codeborne:selenide:7.6.1")
+
     testImplementation("org.junit.jupiter:junit-jupiter:5.11.4")
+
     testImplementation("ch.qos.logback:logback-classic:1.5.16")
+
+    testImplementation("org.assertj:assertj-core:3.27.2")
+
+    implementation("com.google.code.gson:gson:2.11.0")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.18.2")
+    implementation("com.codeborne:xls-test:1.4.3")
+    implementation("com.codeborne:pdf-test:1.5.0")
+    implementation("com.opencsv:opencsv:5.9")
 }
 
 tasks.test {
