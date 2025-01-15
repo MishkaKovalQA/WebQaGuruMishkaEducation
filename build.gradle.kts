@@ -24,6 +24,8 @@ dependencies {
     implementation("com.codeborne:xls-test:1.4.3")
     implementation("com.codeborne:pdf-test:1.5.0")
     implementation("com.opencsv:opencsv:5.9")
+
+    implementation("com.github.javafaker:javafaker:1.0.2")
 }
 
 tasks.test {
