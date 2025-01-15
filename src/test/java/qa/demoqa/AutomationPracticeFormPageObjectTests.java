@@ -14,7 +14,7 @@ class AutomationPracticeFormPageObjectTests extends BaseTest {
                 .email("mishka@gmail.com")
                 .gender("Male")
                 .phone("1234567890")
-                .day("28")
+                .day("03")
                 .month("May")
                 .year("1990")
                 .subject("Biology")
@@ -23,6 +23,16 @@ class AutomationPracticeFormPageObjectTests extends BaseTest {
                 .address("montenegro")
                 .state("Rajasthan")
                 .city("Jaipur").build();
+
+        registrationPage.openPage()
+                .fillRegistrationForm(dataInput)
+                .clickSubmitButton()
+                .checkFormResults(dataInput);
+    }
+
+    @Test
+    void testAutomationPracticeFormWithJavaFakerTest() {
+        var dataInput = RegistrationFormDataModel.builder().build();
 
         registrationPage.openPage()
                 .fillRegistrationForm(dataInput)
