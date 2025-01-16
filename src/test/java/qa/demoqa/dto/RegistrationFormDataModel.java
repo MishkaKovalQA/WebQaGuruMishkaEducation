@@ -6,11 +6,14 @@ import lombok.Data;
 
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.ThreadLocalRandom;
 
 @Data
 @Builder
 public class RegistrationFormDataModel {
+
+    private static Faker faker() {
+        return Faker.instance(Locale.ENGLISH);
+    }
 
     @Builder.Default
     private String firstName = faker().name().firstName();
@@ -19,7 +22,7 @@ public class RegistrationFormDataModel {
     private String lastName = faker().name().lastName();
 
     @Builder.Default
-    private String email = faker().bothify("????##@gmail.com");
+    private String email = faker().internet().emailAddress();
 
     @Builder.Default
     private String gender = getRandomFromList(List.of("Male", "Female", "Other"));
@@ -28,7 +31,7 @@ public class RegistrationFormDataModel {
     private String phone = faker().phoneNumber().subscriberNumber(10);
 
     @Builder.Default
-    private String day = String.valueOf(faker().number().numberBetween(10, 28));
+    private String day = setRandomDay();
 
     @Builder.Default
     private String month = getRandomFromList(List.of(
@@ -52,16 +55,40 @@ public class RegistrationFormDataModel {
     private String address = faker().address().fullAddress();
 
     @Builder.Default
-    private String state = "NCR";
+    private String state = getRandomFromList(List.of("Uttar Pradesh", "NCR", "Haryana", "Rajasthan"));
 
-    @Builder.Default
-    private String city = getRandomFromList(List.of("Delhi", "Gurgaon", "Noida"));
+    private String city;
+
+    public String getCity() {
+        if (city == null) {
+            city = setRandomCity(this.state);
+        }
+        return city;
+    }
 
     private static String getRandomFromList(List<String> options) {
-        return options.get(ThreadLocalRandom.current().nextInt(options.size()));
+        return options.get(faker().random().nextInt(0, options.size() - 1));
     }
 
-    private static Faker faker() {
-        return Faker.instance(Locale.ENGLISH);
+    private static String setRandomDay() {
+        int day = faker().number().numberBetween(1, 28);
+        if (day < 10) {
+            return "0" + day;
+        } else {
+            return day + "";
+        }
     }
+
+    private static String setRandomCity(String state) {
+        String city;
+        switch (state) {
+            case "NCR" -> city = getRandomFromList(List.of("Delhi", "Gurgaon", "Noida"));
+            case "Haryana" -> city = getRandomFromList(List.of("Karnal", "Panipat"));
+            case "Rajasthan" -> city = getRandomFromList(List.of("Jaipur", "Jaiselmer"));
+            case "Uttar Pradesh" -> city = getRandomFromList(List.of("Agra", "Lucknow", "Merrut"));
+            default -> city = "Delhi";
+        }
+        return city;
+    }
+
 }
