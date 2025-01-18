@@ -12,6 +12,8 @@ jobs:
     steps:
       # download repo
       - uses: actions/checkout@v4
+      - name: Set Gradlew executable permission
+        run: chmod +x ./gradlew
       # setup java
       - uses: actions/setup-java@v4
         with:
