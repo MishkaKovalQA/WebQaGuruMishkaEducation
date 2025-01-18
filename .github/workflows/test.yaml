@@ -6,18 +6,15 @@ on: [ push ]
 
 jobs:
   test:
-    # where do we run
     runs-on: ubuntu-latest
-    # what do we do
     steps:
-      # download repo
       - uses: actions/checkout@v4
-      - name: Set Gradlew executable permission
-        run: chmod +x ./gradlew
-      # setup java
+      - name: Ensure Gradlew exists and has executable permission
+        run: |
+          ls -l ./gradlew
+          chmod +x ./gradlew
       - uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '21'
-      # run tests
       - run: ./gradlew clean test
