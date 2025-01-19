@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.opencsv.CSVReader;
 import lombok.SneakyThrows;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import qa.demoqa.dto.ComputerStoreModel;
 
@@ -23,9 +24,11 @@ import java.util.zip.ZipInputStream;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static domain.Tags.FILE_PARSER_TESTS;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Tag(FILE_PARSER_TESTS)
 class FileParserTests {
 
     private ClassLoader cl = FileParserTests.class.getClassLoader();

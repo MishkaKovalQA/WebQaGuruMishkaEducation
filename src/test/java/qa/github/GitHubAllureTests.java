@@ -4,6 +4,7 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.*;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import qa.github.steps.AttachmentsSteps;
 import qa.github.steps.WebSteps;
@@ -11,10 +12,12 @@ import qa.github.steps.WebSteps;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
+import static domain.Tags.GITHUB_TESTS;
 import static io.qameta.allure.Allure.attachment;
 import static io.qameta.allure.Allure.step;
 import static org.openqa.selenium.By.linkText;
 
+@Tag(GITHUB_TESTS)
 public class GitHubAllureTests {
 
     private static final String REPOSITORY = "MishkaKovalQA/skills-copilot-codespaces-vscode";
