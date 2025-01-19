@@ -7,12 +7,10 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import qa.demoqa.helper.Attach;
 import qa.demoqa.page.RegistrationPage;
 
 import java.util.Map;
-
-import static com.codeborne.selenide.Selenide.clearBrowserCookies;
-import static com.codeborne.selenide.Selenide.clearBrowserLocalStorage;
 
 public abstract class BaseTest {
 
@@ -24,7 +22,8 @@ public abstract class BaseTest {
         Configuration.pageLoadTimeout = 60000;
         Configuration.timeout = 10000;
         Configuration.browserSize = "1920x1080";
-        //white only that for running in selenoid without browser gui
+        //write only that for running in selenoid without browser gui
+        //bad practice, we need do that from jenkins
         Configuration.remote = "http://user1:1234@selenoid.autotests.cloud:4444/wd/hub";
 
         Configuration.browser = "chrome";
@@ -45,7 +44,11 @@ public abstract class BaseTest {
 
     @AfterEach
     void tearDown() {
-        clearBrowserCookies();
-        clearBrowserLocalStorage();
+        Attach.screenshotAs("Last screenshot");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
+        Attach.addVideo();
+/*        clearBrowserCookies();
+        clearBrowserLocalStorage();*/
     }
 }
