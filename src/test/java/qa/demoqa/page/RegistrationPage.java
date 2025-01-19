@@ -1,6 +1,7 @@
 package qa.demoqa.page;
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import qa.demoqa.component.CalendarComponent;
 import qa.demoqa.component.ModalResultsComponent;
 import qa.demoqa.dto.RegistrationFormDataModel;
@@ -30,6 +31,7 @@ public class RegistrationPage {
             cityInput = $("#city"),
             submitButton = $("#submit");
 
+    @Step("Open form")
     public RegistrationPage openPage() {
         open("https://demoqa.com/automation-practice-form");
         executeJavaScript("$('#fixedban').remove()");
@@ -117,6 +119,7 @@ public class RegistrationPage {
         return this;
     }
 
+    @Step("Verify results")
     public RegistrationPage checkFormResults(RegistrationFormDataModel data) {
         var rows = $$(".table tbody tr");
         rows.findBy(text("Student Name")).shouldHave(text(data.getFirstName() + " " + data.getLastName()));
@@ -133,6 +136,7 @@ public class RegistrationPage {
         return this;
     }
 
+    @Step("Fill form")
     public RegistrationPage fillRegistrationForm(RegistrationFormDataModel data) {
         setFirstName(data.getFirstName());
         setLastName(data.getLastName());
