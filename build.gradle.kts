@@ -63,10 +63,7 @@ tasks.test {
     }
 
     ignoreFailures = true
-    val propertiesMap: Map<String, String> = System.getProperties().entries
-        .filterIsInstance<Map.Entry<String, String>>()
-        .associate { it.key to it.value }
-    systemProperties(propertiesMap)
+    systemProperties(getSystemPropertiesAsMap())
     systemProperty("junit.jupiter.execution.parallel.enabled", "true")
     systemProperty("junit.jupiter.execution.parallel.mode.default", "concurrent")
     systemProperty("junit.jupiter.execution.parallel.mode.classes.default", "concurrent")
@@ -78,4 +75,17 @@ tasks.test {
         showStandardStreams = true
         exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
     }
+}
+
+tasks.register<Test>("demoQaTest") {
+    useJUnitPlatform {
+        includeTags("demo-qa-tests")
+    }
+}
+
+fun getSystemPropertiesAsMap(): Map<String, String> {
+    val propertiesMap: Map<String, String> = System.getProperties().entries
+        .filterIsInstance<Map.Entry<String, String>>()
+        .associate { it.key to it.value }
+    return propertiesMap
 }
