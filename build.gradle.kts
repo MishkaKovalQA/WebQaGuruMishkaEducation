@@ -42,8 +42,27 @@ dependencies {
     implementation("io.qameta.allure:allure-selenide:2.29.1")
 }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
 tasks.test {
-    useJUnitPlatform()
+    systemProperty("user.timezone", "GMT+3")
+    useJUnitPlatform {
+        systemProperty("junit.jupiter.extensions.autodetection.enabled", "true")
+
+        val includedTags = project.properties["includeTags"] as String?
+        val excludedTags = project.properties["excludeTags"] as String?
+        if (!includedTags.isNullOrBlank()) {
+            includeTags(includedTags)
+        }
+        if (!excludedTags.isNullOrBlank()) {
+            excludeTags(excludedTags)
+        }
+    }
+
+    ignoreFailures = true
     val propertiesMap: Map<String, String> = System.getProperties().entries
         .filterIsInstance<Map.Entry<String, String>>()
         .associate { it.key to it.value }
