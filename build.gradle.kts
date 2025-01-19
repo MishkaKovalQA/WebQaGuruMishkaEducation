@@ -42,11 +42,6 @@ dependencies {
     implementation("io.qameta.allure:allure-selenide:2.29.1")
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
-}
-
 tasks.test {
     systemProperty("user.timezone", "GMT+3")
     useJUnitPlatform {
