@@ -1,0 +1,1 @@
+{"total":2,"items":[{"uid":"4c1583385ced09a68cf3a2c3085d6cfb","name":"qa.github.GitHubAllureTests","statistic":{"failed":2,"broken":0,"skipped":0,"passed":0,"unknown":0,"total":2}},{"uid":"3d9b1012e50975d369948fd9a569df5f","name":"qa.github.GithubSelenideTests","statistic":{"failed":1,"broken":0,"skipped":0,"passed":3,"unknown":0,"total":4}}]}
