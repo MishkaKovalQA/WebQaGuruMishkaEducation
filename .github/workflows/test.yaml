@@ -4,14 +4,14 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: >
+        description: |
           Select a tag to run tests. Available tags:
-          - **demo-qa-tests**
-          - **github-tests**
-          - **heroku-app-tests**
-          - **qa-guru-tests**
-          - **google-tests**
-          - **file-parser-tests**
+          - demo-qa-tests
+          - github-tests
+          - heroku-app-tests
+          - qa-guru-tests
+          - google-tests
+          - file-parser-tests
         required: false
         default: 'github-tests'
         type: string
