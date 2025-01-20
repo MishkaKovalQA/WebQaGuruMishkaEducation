@@ -112,6 +112,7 @@ public class RegistrationPage {
         return this;
     }
 
+    @Step("Click submit button")
     public RegistrationPage clickSubmitButton() {
         submitButton.click();
         modalResultsComponent.checkAppeared();
