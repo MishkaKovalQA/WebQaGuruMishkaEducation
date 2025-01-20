@@ -3,7 +3,10 @@ package qa.owner.config;
 import domain.Browser;
 import org.aeonbits.owner.Config;
 
-// check Path, byte[]
+import java.io.File;
+import java.net.URL;
+import java.nio.file.Path;
+
 public interface TypeConfig extends Config {
 
     @Key("integer")
@@ -18,5 +21,16 @@ public interface TypeConfig extends Config {
     @Key("enum")
     Browser getEnum();
 
+    @Key("file")
+    File getFile();
 
+    @Key("url")
+    URL getUrl();
+
+    @Key("path")
+    @ConverterClass(PathConverter.class)
+    Path getPath();
+
+    @Key("byteArray")
+    byte[] getByteArray();
 }
