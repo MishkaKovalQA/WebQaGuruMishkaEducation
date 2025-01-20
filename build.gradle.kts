@@ -42,7 +42,7 @@ dependencies {
     implementation("io.qameta.allure:allure-selenide:2.29.1")
 }
 
-tasks.test {
+tasks.withType<Test> {
     systemProperty("user.timezone", "GMT+3")
     useJUnitPlatform {
         systemProperty("junit.jupiter.extensions.autodetection.enabled", "true")
@@ -75,6 +75,24 @@ tasks.test {
 tasks.register<Test>("demoQaTest") {
     useJUnitPlatform {
         includeTags("demo-qa-tests")
+    }
+}
+
+tasks.register<Test>("onePropertyTest") {
+    useJUnitPlatform {
+        includeTags("one_property")
+    }
+}
+
+tasks.register<Test>("helloTest") {
+    useJUnitPlatform {
+        includeTags("hello_test")
+    }
+}
+
+tasks.register<Test>("twoTest") {
+    useJUnitPlatform {
+        includeTags("hello_test", "one_property")
     }
 }
 
