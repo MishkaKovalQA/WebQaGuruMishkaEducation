@@ -12,6 +12,8 @@ import qa.demoqa.page.RegistrationPage;
 
 import java.util.Map;
 
+import static com.codeborne.selenide.Browsers.CHROME;
+
 public abstract class BaseTest {
 
     protected RegistrationPage registrationPage = new RegistrationPage();
@@ -21,19 +23,19 @@ public abstract class BaseTest {
         Configuration.browserCapabilities.setCapability("pageLoadStrategy", "eager");
         Configuration.pageLoadTimeout = 60000;
         Configuration.timeout = 10000;
-        Configuration.browserSize = "1920x1080";
         //write only that for running in selenoid without browser gui
         //bad practice, we need do that from jenkins
-        Configuration.remote = "http://user1:1234@selenoid.autotests.cloud:4444/wd/hub";
+        Configuration.remote = "http://user1:1234@"
+                + System.getProperty("selenoid_url", "selenoid.autotests.cloud") + ":4444/wd/hub";
+        Configuration.browser = System.getProperty("browser_name", CHROME);
+        Configuration.browserVersion = System.getProperty("browser_version", "100.0");
+        Configuration.browserSize = System.getProperty("browser_size", "1920x1080");
 
-        Configuration.browser = "chrome";
-        Configuration.browserVersion = "100.0";
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
                 "enableVNC", true, //window in window for selenoid
                 "enableVideo", true //capture the video, headless should be false
         ));
-
         Configuration.browserCapabilities = capabilities;
     }
 
