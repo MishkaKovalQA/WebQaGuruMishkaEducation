@@ -8,4 +8,5 @@ public class Tags {
     public static final String QA_GURU_TESTS = "qa-guru-tests";
     public static final String GOOGLE_TESTS = "google-tests";
     public static final String FILE_PARSER_TESTS = "file-parser-tests";
+    public static final String WEB_DRIVER_TESTS = "web-driver-tests";
 }
