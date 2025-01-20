@@ -40,6 +40,10 @@ dependencies {
     implementation("com.github.javafaker:javafaker:1.0.2")
 
     implementation("io.qameta.allure:allure-selenide:2.29.1")
+
+    implementation("io.github.bonigarcia:webdrivermanager:5.9.2") //it's for selenium to download correct webdriver
+
+    implementation("org.aeonbits.owner:owner:1.0.12")
 }
 
 tasks.withType<Test> {
