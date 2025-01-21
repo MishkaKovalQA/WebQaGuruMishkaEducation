@@ -32,7 +32,7 @@ public class WebDriverTests {
         assertEquals("GitHub · Build and ship software on a single, collaborative platform · GitHub", title);
     }
 
-    //./gradlew clean test -DbaseUrl=https://github.com -Dbrowser=CHROME -PincludeTags=web-driver-tests
+    //./gradlew clean test -DbaseUrl=https://github.com -Dbrowser=CHROME -Denv=local -PincludeTags=web-driver-tests
     @AfterEach
     public void tearDown() {
         driver.quit();

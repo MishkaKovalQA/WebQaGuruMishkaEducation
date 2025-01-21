@@ -24,7 +24,7 @@ public class WebDriverProvider implements Supplier<WebDriver> {
     }
 
     public WebDriver createDriver() {
-        switch (config.getBrowser()) {
+        switch (config.getBrowserName()) {
             case CHROME: {
                 WebDriverManager.chromedriver().setup();
                 return new ChromeDriver();
@@ -34,7 +34,7 @@ public class WebDriverProvider implements Supplier<WebDriver> {
                 return new FirefoxDriver();
             }
             default: {
-                throw new RuntimeException("Browser not supported: " + config.getBrowser());
+                throw new RuntimeException("Browser not supported: " + config.getBrowserName());
             }
         }
     }
