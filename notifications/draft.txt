@@ -1,0 +1,26 @@
+// we can get it from BotFather via telegram
+Telegram username: @mishka_qa_tests_bot
+Telegram token: 7620756824:AAG7staLx8_Ca4q3TQsXczFcq_soAgWfr00
+Chat id: -1002425611458
+
+
+a. Fetch bot updates and look for the chat id:
+curl https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/getUpdates | -r '.result[].message.chat.id'
+//we can know our Chat id from here
+curl https://api.telegram.org/bot7620756824:AAG7staLx8_Ca4q3TQsXczFcq_soAgWfr00/getUpdates | -r '.result[].message.chat.id'
+
+Send a message using the HTTP API: https://core.telegram.org/bots/api#sendmessage
+curl -X POST \
+     -H 'Content-Type: application/json' \
+     -d '{"chat_id": "123456789", "text": "This is a test from curl", "disable_notification": true}' \
+     https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage
+
+curl -X POST \
+     -H 'Content-Type: application/json' \
+     -d '{"chat_id": "-1002425611458", "text": "This is a test from Mishka", "disable_notification": true}' \
+     https://api.telegram.org/bot7620756824:AAG7staLx8_Ca4q3TQsXczFcq_soAgWfr00/sendMessage
+
+run jar with notifications
+     java \
+     "-DconfigFile=notifications/config.json" \
+     -jar notifications/allure-notifications-4.8.0.jar
