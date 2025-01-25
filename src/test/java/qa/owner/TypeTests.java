@@ -9,7 +9,7 @@ import java.io.File;
 import java.net.URL;
 import java.nio.file.Path;
 
-import static domain.Browser.CHROME;
+import static constants.Browser.CHROME;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TypeTests {

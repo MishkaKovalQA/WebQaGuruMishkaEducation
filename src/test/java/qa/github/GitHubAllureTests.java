@@ -12,7 +12,7 @@ import qa.github.steps.WebSteps;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
-import static domain.Tags.GITHUB_TESTS;
+import static constants.Tags.GITHUB_TESTS;
 import static io.qameta.allure.Allure.attachment;
 import static io.qameta.allure.Allure.step;
 import static org.openqa.selenium.By.linkText;

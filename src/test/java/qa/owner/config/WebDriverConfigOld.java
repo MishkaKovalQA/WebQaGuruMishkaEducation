@@ -1,6 +1,6 @@
 package qa.owner.config;
 
-import domain.Browser;
+import constants.Browser;
 
 import java.net.MalformedURLException;
 import java.net.URL;

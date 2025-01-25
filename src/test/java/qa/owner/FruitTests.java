@@ -4,8 +4,8 @@ import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.Test;
 import qa.owner.config.FruitConfig;
 
-import static domain.Browser.CHROME;
-import static domain.Browser.FIREFOX;
+import static constants.Browser.CHROME;
+import static constants.Browser.FIREFOX;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class FruitTests {

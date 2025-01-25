@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.logevents.SelenideLogger.step;
-import static domain.Tags.DEMO_QA_TESTS;
+import static constants.Tags.DEMO_QA_TESTS;
 
 @Tag(DEMO_QA_TESTS)
 class AutomationPracticeFormTests extends BaseTest {

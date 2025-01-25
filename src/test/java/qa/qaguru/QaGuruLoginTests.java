@@ -1,7 +1,7 @@
 package qa.qaguru;
 
 import com.codeborne.selenide.Configuration;
-import domain.Browser;
+import constants.Browser;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.parallel.Execution;
@@ -13,7 +13,7 @@ import qa.BaseTest;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
-import static domain.Tags.QA_GURU_TESTS;
+import static constants.Tags.QA_GURU_TESTS;
 
 @Tag(QA_GURU_TESTS)
 class QaGuruLoginTests extends BaseTest {

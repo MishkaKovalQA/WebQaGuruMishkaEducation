@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import qa.BaseTest;
 import qa.demoqa.dto.RegistrationFormDataModel;
 
-import static domain.Tags.DEMO_QA_TESTS;
+import static constants.Tags.DEMO_QA_TESTS;
 
 @Tag(DEMO_QA_TESTS)
 class AutomationPracticeFormPageObjectTests extends BaseTest {

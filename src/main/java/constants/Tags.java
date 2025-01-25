@@ -1,4 +1,4 @@
-package domain;
+package constants;
 
 public class Tags {
 

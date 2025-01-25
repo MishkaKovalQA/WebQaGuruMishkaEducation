@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static domain.Tags.GITHUB_TESTS;
+import static constants.Tags.GITHUB_TESTS;
 
 @Tag(GITHUB_TESTS)
 class GithubSelenideTests {

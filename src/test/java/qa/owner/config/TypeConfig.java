@@ -1,6 +1,6 @@
 package qa.owner.config;
 
-import domain.Browser;
+import constants.Browser;
 import org.aeonbits.owner.Config;
 
 import java.io.File;

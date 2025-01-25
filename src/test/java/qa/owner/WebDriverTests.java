@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import qa.owner.config.WebDriverProvider;
 
-import static domain.Tags.WEB_DRIVER_TESTS;
+import static constants.Tags.WEB_DRIVER_TESTS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Tag(WEB_DRIVER_TESTS)

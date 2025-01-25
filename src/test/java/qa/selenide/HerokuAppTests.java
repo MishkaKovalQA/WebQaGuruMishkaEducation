@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.DragAndDropOptions.to;
 import static com.codeborne.selenide.Selenide.*;
-import static domain.Tags.HEROKU_APP_TESTS;
+import static constants.Tags.HEROKU_APP_TESTS;
 
 @Tag(HEROKU_APP_TESTS)
 public class HerokuAppTests {
