@@ -5,6 +5,9 @@ import io.qameta.allure.Step;
 import qa.demoqa.component.CalendarComponent;
 import qa.demoqa.component.ModalResultsComponent;
 import qa.demoqa.dto.RegistrationFormDataModel;
+import qa.demoqa.element.Button;
+import qa.demoqa.element.CheckBox;
+import qa.demoqa.element.RadioButton;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.value;
@@ -19,17 +22,18 @@ public class RegistrationPage {
             firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             emailInput = $("#userEmail"),
-            genderInput = $("#genterWrapper"),
             phoneInput = $("#userNumber"),
             dateOfBirthInput = $("#dateOfBirthInput"),
             subjectInput = $("#subjectsInput"),
-            hobbyInput = $("#hobbiesWrapper"),
             fileInput = $("#uploadPicture"),
             addressInput = $("#currentAddress"),
             stateCityInput = $("#stateCity-wrapper"),
             stateInput = $("#state"),
-            cityInput = $("#city"),
-            submitButton = $("#submit");
+            cityInput = $("#city");
+
+    Button submitButton = new Button("Submit", $("#submit"));
+    RadioButton genderInput = new RadioButton("Gender", $("#genterWrapper"));
+    CheckBox hobbyInput = new CheckBox("Hobby", $("#hobbiesWrapper"));
 
     @Step("Open form")
     public RegistrationPage openPage() {
@@ -60,7 +64,7 @@ public class RegistrationPage {
     }
 
     public RegistrationPage setGender(String gender) {
-        genderInput.$(byText(gender)).click();
+        genderInput.click(gender);
 
         return this;
     }
@@ -85,7 +89,7 @@ public class RegistrationPage {
     }
 
     public RegistrationPage setHobby(String hobby) {
-        hobbyInput.$(byText(hobby)).click();
+        hobbyInput.click(hobby);
 
         return this;
     }
@@ -112,7 +116,6 @@ public class RegistrationPage {
         return this;
     }
 
-    @Step("Click submit button")
     public RegistrationPage clickSubmitButton() {
         submitButton.click();
         modalResultsComponent.checkAppeared();
