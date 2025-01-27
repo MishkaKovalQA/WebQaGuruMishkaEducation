@@ -9,14 +9,14 @@ import static com.codeborne.selenide.Selectors.byText;
 
 @Slf4j
 @RequiredArgsConstructor
-public class RadioButton {
+public class RadioButton implements Clickable {
 
     private final String name;
     private final SelenideElement selector;
 
     @Step("Click radio button {this.name}")
-    public void click(String gender) {
+    public void click(String text) {
         log.info(("Click radio button " + name));
-        selector.$(byText(gender)).click();
+        selector.$(byText(text)).click();
     }
 }

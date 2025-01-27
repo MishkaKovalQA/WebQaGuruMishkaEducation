@@ -11,21 +11,21 @@ import static com.codeborne.selenide.Selectors.byText;
 
 @Slf4j
 @RequiredArgsConstructor
-public class CheckBox {
+public class CheckBox implements Clickable {
 
     private final String name;
     private final SelenideElement selector;
 
     @Step("Click check box {this.name}")
-    public void click(String hobby) {
+    public void click(String text) {
         log.info(("Click check box " + name));
-        selector.$(byText(hobby)).click();
+        selector.$(byText(text)).click();
     }
 
     @Step("Click check box {this.name} from list")
-    public void click(List<String> hobbyList) {
+    public void click(List<String> textList) {
         log.info(("Click check box " + name));
-        hobbyList.forEach(hobby
-                -> selector.$(byText(hobby)).click());
+        textList.forEach(text
+                -> selector.$(byText(text)).click());
     }
 }
